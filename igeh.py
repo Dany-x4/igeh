@@ -68,7 +68,7 @@ def cekAPI(cookie):
 		external.append(f'{nama}|{followers}|{following}')
 	except ValueError:
 		print(f'{M}>{C} Instagram Checkpoint');sleep(4)
-		os.remove('kukis.log')
+		os.remove('.kukis.log')
 		os.remove('.username')
 		os.system('python instagram.py')
 
@@ -76,7 +76,7 @@ def cekAPI(cookie):
 
 def checkin():
 	try:
-		kuki=open('kukis.log','r').read()
+		kuki=open('.kukis.log','r').read()
 	except FileNotFoundError:
 		login()
 	ex,user=cekAPI(kuki)
@@ -94,8 +94,8 @@ def login():
 
 	x=instagramAPI(us,pw).loginAPI()
 	if x.get('status')=='success':
-		open('.username','a').write(us)
-		open('kukis.log','a').write(x.get('cookie'))
+		open('username','a').write(us)
+		open('.kukis.log','a').write(x.get('cookie'))
 		cookie={'cookie':x.get('cookie')}
 		print(f'\n{H}>{C} Login berhasil')
 		os.system('python login.py')
@@ -320,7 +320,7 @@ class instagram:
 	def Exit(self):
 		x=input(f'\n [{M}>{C}] Apakah anda yakin ingin keluar ? [Y/t]: ')
 		if x in ('y','Y'):
-			os.remove('kukis.log')
+			os.remove('.kukis.log')
 			os.remove('.username')
 			os.system('python instagram.py')
 		elif x in ('t','T'):
@@ -693,7 +693,7 @@ class instagram:
 			global following
 			six=0
 			print(f'\n [{U}!{C}] Bot Unfollow-All Dijalankan\n')
-			x=open('kukis.log','r').read()
+			x=open('.kukis.log','r').read()
 			x_id=re.findall('sessionid=(\d+)',x)[0]
 			back=self.infoAPI(self.cookie,'https://i.instagram.com/api/v1/friendships/%s/following/?count=100000',x_id)
 			for i in following:
