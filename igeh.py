@@ -94,7 +94,7 @@ def login():
 
 	x=instagramAPI(us,pw).loginAPI()
 	if x.get('status')=='success':
-		open('username','a').write(us)
+		open('.username','a').write(us)
 		open('.kukis.log','a').write(x.get('cookie'))
 		cookie={'cookie':x.get('cookie')}
 		print(f'\n{H}>{C} Login berhasil')
